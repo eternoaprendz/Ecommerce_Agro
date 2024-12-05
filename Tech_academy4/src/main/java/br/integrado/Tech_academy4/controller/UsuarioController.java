@@ -23,6 +23,14 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarios);
     }
 
+
+    @GetMapping("/{id}")
+    public Usuario findById(@PathVariable Integer id) {
+        return this.repository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Usuário não foi encontrado"));
+    }
+
     @PostMapping
     public ResponseEntity<Usuario> save(@RequestBody UsuarioRequestDTO dto) {
         if (dto.nome().isEmpty()) {
@@ -30,6 +38,22 @@ public class UsuarioController {
         }
 
         Usuario usuario = new Usuario();
+        usuario.setNome(dto.nome());
+
+        this.repository.save(usuario);
+        return ResponseEntity.ok(usuario);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> update(@PathVariable Integer id, @RequestBody UsuarioRequestDTO dto) {
+        if (dto.nome().isEmpty()) {
+            return ResponseEntity.status(428).build();
+        }
+
+        Usuario usuario = this.repository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Filme não foi encontrado"));
+
         usuario.setNome(dto.nome());
 
         this.repository.save(usuario);

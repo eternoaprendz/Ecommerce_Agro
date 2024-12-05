@@ -1,6 +1,8 @@
 package br.integrado.Tech_academy4.model;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "produtos")
 public class Produto {
@@ -16,7 +18,7 @@ public class Produto {
     private String descricao;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private Double preco;
+    private BigDecimal preco;
 
     @Column(name = "quantidade_estoque", nullable = false)
     private Integer quantidadeEstoque;

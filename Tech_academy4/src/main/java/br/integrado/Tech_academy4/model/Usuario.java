@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
@@ -28,7 +28,7 @@ public class Usuario {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+      this.nome = nome;
     }
 
     public Integer getId() {
