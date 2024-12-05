@@ -5,7 +5,7 @@ CREATE TABLE produtos (
     preco DECIMAL(10, 2) NOT NULL,
     quantidade_estoque INT NOT NULL,
     categoria_id INT,
-    imagem_url VARCHAR(255),
+
 
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
